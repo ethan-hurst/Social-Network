@@ -1,5 +1,5 @@
-const express = require("express");
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 
 /**
  * Get Route for /api/profiles/test
@@ -8,8 +8,8 @@ const router = express.Router();
  */
 router.get('/test', (req, res) => {
   res.json({
-    msg: "Profile Works"
-  });
+    msg: 'Profile Works'
+  })
 })
 
-module.exports = router;
+module.exports = router

@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 const userSchema = new Schema({
   name: {
@@ -16,12 +16,13 @@ const userSchema = new Schema({
   },
   avatar: {
     type: String,
-    required: true
+    required: false
   },
   date: {
     type: Date,
     default: Date.now
-  },
-});
+  }
+})
 
-module.exports = User = mongoose.model('users', userSchema);
+// eslint-disable-next-line no-undef
+module.exports = User = mongoose.model('users', userSchema)
