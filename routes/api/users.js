@@ -56,4 +56,36 @@ router.post('/register', (req, res) => {
   console.log(`User ${req.body.name} was created with email ${req.body.email}`)
 })
 
+/**
+ * Get Route for /api/users/login
+ * @desc Login Users by return json web token
+ * @access Public
+ */
+router.post('/login', (req, res) => {
+  // eslint-disable-next-line no-unused-vars
+  const email = req.body.email
+  const password = req.body.password
+  User.findOne({
+    email
+  }).then(user => {
+    if (!user) {
+      return res.status(404).json({
+        email: 'Email or Password incorrect'
+      })
+    }
+    bcrypt.compare(password, user.password)
+      .then(isMatch => {
+        if (isMatch) {
+          res.json({
+            msg: 'Success!'
+          })
+        }
+        return res.status(400).json({
+          password: 'Email or Password incorrect'
+        })
+      })
+      .catch()
+  }).catch()
+})
+
 module.exports = router
