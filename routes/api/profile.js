@@ -244,4 +244,11 @@ router.post('/education', passport.authenticate('jwt', {
   })
 })
 
+/***
+ * @Route DELETE api/profile/experience/:exp_id
+ * @description Delete Experience from profile
+ * @access Private
+ */
+router.post('/.')
+
 module.exports = router
