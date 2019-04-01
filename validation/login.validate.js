@@ -1,5 +1,5 @@
 const Validator = require('validator')
-const isEmpty = require('./isEmpty')
+const isEmpty = require('./isEmpty.validate')
 
 module.exports = function validateLoginInput (data) {
   let errors = {}

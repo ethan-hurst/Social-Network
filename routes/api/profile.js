@@ -3,6 +3,8 @@ const router = express.Router()
 const mongoose = require('mongoose')
 const passport = require('passport')
 
+const validateProfileInput = require('../../validation/profile.validate')
+
 const User = require('../../models/User.model')
 const Profile = require('../../models/Profile.model')
 
@@ -47,18 +49,26 @@ router.get('/', passport.authenticate('jwt', {
 router.post('/', passport.authenticate('jwt', {
   session: false
 }), (req, res) => {
+  const {
+    errors,
+    isValid
+  } = validateProfileInput(req.body)
+  if (!isValid) {
+    return res.status(400).json(errors)
+  }
   const profileFields = {}
   profileFields.user = req.user.id
   if (req.body.handle) profileFields.handle = req.body.handle
   if (req.body.company) profileFields.company = req.body.company
   if (req.body.website) profileFields.website = req.body.website
   if (req.body.location) profileFields.location = req.body.location
-  if (req.body.status) profileFields.status = req.body.status
-  if (req.body.interests) profileFields.interests = req.body.interests
   if (req.body.bio) profileFields.bio = req.body.bio
-  if (req.body.instagramUsername) profileFields.instagramUsername = req.body.instagramUsername
-  if (typeof req.body.experience !== 'undefined') {
-    profileFields.experience = req.body.experience.split(',')
+  if (req.body.status) profileFields.status = req.body.status
+  if (req.body.githubusername) {
+    profileFields.githubusername = req.body.githubusername
+  }
+  if (typeof req.body.skills !== 'undefined') {
+    profileFields.skills = req.body.skills.split(',')
   }
   profileFields.social = {}
   if (req.body.youtube) profileFields.social.youtube = req.body.youtube
@@ -66,8 +76,33 @@ router.post('/', passport.authenticate('jwt', {
   if (req.body.facebook) profileFields.social.facebook = req.body.facebook
   if (req.body.linkedin) profileFields.social.linkedin = req.body.linkedin
   if (req.body.instagram) profileFields.social.instagram = req.body.instagram
-
-  if (req.body.date) profileFields.date = req.body.date
+  Profile.findOne({
+    user: req.user.id
+  })
+    .then(profile => {
+      if (profile) {
+        Profile.findOneAndUpdate({
+          user: req.user.id
+        }, {
+          $set: profileFields
+        }, {
+          new: true
+        }).then(profile => res.json(profile))
+          .catch(err => console.log(err))
+      } else {
+        Profile.findOne({
+          handle: profileFields.handle
+        }).then(profile => {
+          if (profile) {
+            errors.handle = 'That handle already exists, please choose another.'
+            res.status(400).json(errors)
+          }
+          new Profile(profile)
+            .save()
+            .then(profile => res.json(profile))
+        }).catch(err => console.log(err))
+      }
+    }).catch(err => console.log(err))
 })
 
 module.exports = router

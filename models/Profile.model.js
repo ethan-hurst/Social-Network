@@ -24,13 +24,14 @@ const profileSchema = new Schema({
     type: String,
     required: true
   },
-  interests: {
-    type: [String]
+  skills: {
+    type: [String],
+    required: true
   },
   bio: {
     type: String
   },
-  instagramUsername: {
+  githubusername: {
     type: String
   },
   experience: [{
@@ -43,24 +44,21 @@ const profileSchema = new Schema({
       required: true
     },
     location: {
-      type: String,
-      required: true
+      type: String
     },
     from: {
       type: Date,
-      required: false
+      required: true
     },
     to: {
-      type: Date,
-      required: false
+      type: Date
     },
     current: {
       type: Boolean,
       default: false
     },
     description: {
-      type: String,
-      required: false
+      type: String
     }
   }],
   education: [{
@@ -72,25 +70,23 @@ const profileSchema = new Schema({
       type: String,
       required: true
     },
-    fieldOfStudy: {
+    fieldofstudy: {
       type: String,
       required: true
     },
     from: {
       type: Date,
-      required: false
+      required: true
     },
     to: {
-      type: Date,
-      required: false
+      type: Date
     },
     current: {
       type: Boolean,
       default: false
     },
     description: {
-      type: String,
-      required: false
+      type: String
     }
   }],
   social: {
@@ -115,5 +111,6 @@ const profileSchema = new Schema({
     default: Date.now
   }
 })
+
 // eslint-disable-next-line no-undef
 module.exports = Profile = mongoose.model('profile', profileSchema)
