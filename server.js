@@ -1,8 +1,9 @@
-const key = require('./config/keys.js')
+const keys = require('./config/keys.js')
 const express = require('express')
 const port = process.env.PORT || 5000
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const passport = require('passport')
 
 const users = require('./routes/api/users')
 const profile = require('./routes/api/profile')
@@ -14,13 +15,16 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(bodyParser.json())
 
-mongoose.connect(key.url, {
+mongoose.connect(keys.url, {
   useNewUrlParser: true
 })
   .then(() => console.log('Database Connected!'))
   .catch(err => console.log(err))
 
 app.get('/', (req, res) => res.send('What are you looking at'))
+
+app.use(passport.initialize())
+require('./config/passport')(passport)
 
 app.use('/api/users', users)
 app.use('/api/profile', profile)
