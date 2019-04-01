@@ -44,20 +44,43 @@ router.get('/', passport.authenticate('jwt', {
 })
 
 /**
- * @ROUTE GET api/profile/:handle
- *@desc Get Profile by Handle
+ * @ROUTE GET api/profile/:user_id
+ *@desc Get Profile by user ID
  *@Access Private
  */
-router.get('/:handle', passport.authenticate('jwt', {
+router.get('/all', passport.authenticate('jwt', {
   session: false
 }), (req, res) => {
   const errors = {}
+  Profile.find()
+    .populate('user', ['name', 'avatar'])
+    .then(profiles => {
+      if (!profiles) {
+        errors.noprofile = 'There are no profiles'
+        return res.status(404).json(errors)
+      }
+      res.json(profiles)
+    })
+    .catch(err => res.status(404).json({
+      err,
+      profile: 'There are no profiles'
+    }))
+})
+
+/**
+ * @ROUTE GET api/profile/handle/:handle
+ *@desc Get Profile by Handle
+ *@Access Private
+ */
+router.get('/handle/:handle', (req, res) => {
+  const errors = {}
   Profile.findOne({
     handle: req.params.handle
-  }).populate('user', ['name', 'avatar'])
+  })
+    .populate('user', ['name', 'avatar'])
     .then(profile => {
       if (!profile) {
-        errors.noprofile = 'There is no Profile for this user'
+        errors.noprofile = 'There is no profile for this user'
         res.status(404).json(errors)
       }
       res.json(profile)
@@ -66,31 +89,36 @@ router.get('/:handle', passport.authenticate('jwt', {
 })
 
 /**
- * @ROUTE GET api/profile/:user_id
+ * @ROUTE GET api/profile/user/:user_id
  *@desc Get Profile by user ID
  *@Access Private
  */
-router.get('/user/:user_id', passport.authenticate('jwt', {
-  session: false
-}), (req, res) => {
+
+router.get('/user/:user_id', (req, res) => {
   const errors = {}
   Profile.findOne({
     user: req.params.user_id
-  }).populate('user', ['name', 'avatar'])
+  })
+    .populate('user', ['name', 'avatar'])
     .then(profile => {
       if (!profile) {
-        errors.noprofile = 'There is no Profile for this user'
+        errors.noprofile = 'There is no profile for this user'
         res.status(404).json(errors)
       }
       res.json(profile)
     })
-    .catch(err => res.status(404).json(err))
+    .catch(err =>
+      res.status(404).json({
+        err,
+        profile: 'There is no profile for this user'
+      })
+    )
 })
 
 /**
  * @ROUTE POST api/profile
  *@desc Create or EDIT a user profile
- *@Access Protected
+ *@Access Private
  */
 router.post('/', passport.authenticate('jwt', {
   session: false
@@ -122,33 +150,30 @@ router.post('/', passport.authenticate('jwt', {
   if (req.body.facebook) profileFields.social.facebook = req.body.facebook
   if (req.body.linkedin) profileFields.social.linkedin = req.body.linkedin
   if (req.body.instagram) profileFields.social.instagram = req.body.instagram
+
   Profile.findOne({
     user: req.user.id
+  }).then(profile => {
+    if (profile) {
+      Profile.findOneAndUpdate({
+        user: req.user.id
+      }, {
+        $set: profileFields
+      }, {
+        new: true
+      }).then(profile => res.json(profile))
+    } else {
+      Profile.findOne({
+        handle: profileFields.handle
+      }).then(profile => {
+        if (profile) {
+          errors.handle = 'That handle already exists'
+          res.status(400).json(errors)
+        }
+        new Profile(profileFields).save().then(profile => res.json(profile))
+      })
+    }
   })
-    .then(profile => {
-      if (profile) {
-        Profile.findOneAndUpdate({
-          user: req.user.id
-        }, {
-          $set: profileFields
-        }, {
-          new: true
-        }).then(profile => res.json(profile))
-          .catch(err => console.log(err))
-      } else {
-        Profile.findOne({
-          handle: profileFields.handle
-        }).then(profile => {
-          if (profile) {
-            errors.handle = 'That handle already exists, please choose another.'
-            res.status(400).json(errors)
-          }
-          new Profile(profile)
-            .save()
-            .then(profile => res.json(profile))
-        }).catch(err => console.log(err))
-      }
-    }).catch(err => console.log(err))
 })
 
 module.exports = router
