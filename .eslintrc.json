@@ -11,19 +11,8 @@
         "SharedArrayBuffer": "readonly"
     },
     "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
         "ecmaVersion": 2018
     },
-    "plugins": [
-        "react"
-    ],
     "rules": {
-        "no-unused-vars": ["warn", {
-            "vars": "all",
-            "args": "after-used",
-            "ignoreRestSiblings": false
-        }]
     }
 }

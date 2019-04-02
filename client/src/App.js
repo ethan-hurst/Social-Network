@@ -1,12 +1,17 @@
 import React, {
-  Component
+  Component,
 } from 'react';
-import './custom.scss'
+import './custom.scss';
+import { Navbar, Footer, Landing } from './components/layout';
 
 class App extends Component {
   render() {
-    return ( <
-      h1 > Some Text < /h1>
+    return (
+      <>
+        <Navbar />
+        <Landing />
+        <Footer />
+      </>
     );
   }
 }

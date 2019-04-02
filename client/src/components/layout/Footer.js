@@ -1,11 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-export default function Footer () {
+export default function Footer() {
   return (
     <div>
-      <footer class="bg-dark text-white mt-5 p-4 text-center">
-        Copyright &copy; 2019 Just Friends
+      <footer className="bg-dark text-white mt-5 p-4 text-center">
+        Copyright &copy;
+        {new Date().getFullYear()}
+        Just Friends
       </footer>
-    </div >
-  )
+    </div>
+  );
 }
