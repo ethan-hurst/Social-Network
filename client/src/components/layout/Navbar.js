@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
-export default class Navbar extends Component {
-  render() {
+class Navbar extends Component {
+  render () {
     return (
       <div>
 
@@ -9,3 +9,5 @@ export default class Navbar extends Component {
     )
   }
 }
+
+export default Navbar
