@@ -176,4 +176,21 @@ router.delete('/:id', passport.authenticate('jwt', {
     })
 })
 
+/**
+ * POST Route for /api/posts/comment/:id
+ * @desc Add Comment to Post
+ * @access Private
+ */
+router.post('/comment/:id', passport.authenticate('jwt', {
+  session: false
+}), (req, res) => {
+  Post.findById(req.params.id)
+    .then(post => {
+      const newComment = {
+        text: req.body.text,
+        name: req.body.name
+      }
+    })
+})
+
 module.exports = router
