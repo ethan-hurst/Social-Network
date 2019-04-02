@@ -11,7 +11,7 @@ const User = require('../../models/User.model')
 const Profile = require('../../models/Profile.model')
 
 /**
- * Get Route for /api/profiles/test
+ * Get Route for /api/profile/test
  * @desc Test Profile route
  * @access Public
  */
@@ -272,7 +272,7 @@ router.delete('/experience/:exp_id', passport.authenticate('jwt', {
  * @description Delete Education from profile
  * @access Private
  */
-router.delete('/education/:exp_id', passport.authenticate('jwt', {
+router.delete('/education/:edu_id', passport.authenticate('jwt', {
   session: false
 }), (req, res) => {
   Profile.findOne({
@@ -289,4 +289,24 @@ router.delete('/education/:exp_id', passport.authenticate('jwt', {
     })
     .catch(err => res.status(404).json(err))
 })
+
+/***
+ * @Route DELETE api/profile
+ * @description Delete User and Profile
+ * @access Private
+ */
+router.delete('/', passport.authenticate('jwt', {
+  session: false
+}), (req, res) => {
+  Profile.findOneAndRemove({
+    user: req.user.id
+  }).then(() => {
+    User.findOneAndRemove({
+      _id: req.user.id
+    }).then(() => res.json({
+      msg: 'Profile and User removed!'
+    }))
+  })
+})
+
 module.exports = router
