@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const passport = require('passport')
 
 const Post = require('../../models/Post.model')
+const Profile = require('../../models/Profile.model')
 
 const validatePostInput = require('../../validation/post.validate')
 
@@ -16,6 +17,37 @@ router.get('/test', (req, res) => {
   res.json({
     msg: 'Posts Works'
   })
+})
+
+/**
+ * GET Route for /api/posts/
+ * @desc Get Posts
+ * @access Public
+ */
+router.get('/', (req, res) => {
+  Post.find()
+    .sort({
+      date: -1
+    })
+    .then(posts => res.json(posts))
+    .catch((err) => res.status(404).json({
+      err,
+      nopostsfound: 'There are no posts found!'
+    }))
+})
+
+/**
+ * GET Route for /api/posts/:id
+ * @desc Get Posts by ID
+ * @access Public
+ */
+router.get('/:id', (req, res) => {
+  Post.findById(req.params.id)
+    .then(post => res.json(post))
+    .catch((err) => res.status(404).json({
+      err,
+      nopostfound: 'No post found with that ID'
+    }))
 })
 
 /**
@@ -41,6 +73,36 @@ router.post('/', passport.authenticate('jwt', {
   })
   newPost.save()
     .then(post => res.json(post))
+})
+
+/**
+ * DELETE Route for /api/posts/:id
+ * @desc Delete Posts by ID
+ * @access Private
+ */
+router.delete('/:id', passport.authenticate('jwt', {
+  session: false
+}), (req, res) => {
+  Profile.findOne({
+    user: req.user.id
+  })
+    .then(profile => {
+      Post.findById(req.params.id)
+        .then(post => {
+          if (post.user.toString() !== req.user.id) {
+            return res.status(401).json({
+              notauthorized: 'You\'re not authorized to delete that!'
+            })
+          }
+          post.remove()
+            .then(() => res.json({
+              success: true
+            }))
+        }).catch((err) => res.status(404).json({
+          err,
+          nopostfound: 'Could not Delete post! Unable to locate a post with that ID!'
+        }))
+    })
 })
 
 module.exports = router
