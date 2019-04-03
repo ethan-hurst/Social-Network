@@ -7,7 +7,7 @@ export default class Navbar extends Component {
       <div>
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
           <div className="container">
-            <Link id="" className="nav-link navbar-brand" to="/">Just Friends</Link>
+            <Link id="" className="nav-link navbar-brand" to="/">Just Friends&trade;</Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav">
               <span className="navbar-toggler-icon" />
             </button>
@@ -28,7 +28,7 @@ export default class Navbar extends Component {
             </div>
           </div>
         </nav>
-      </div >
+      </div>
     );
   }
 }

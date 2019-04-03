@@ -12,7 +12,7 @@ class Landing extends Component {
               <div className="row">
                 <div className="col-md-12 text-center">
                   <h1 className="display-3 mb-4">
-                    Just Friends
+                    Just Friends&trade;
                   </h1>
                   <p className="lead">Tag line</p>
                   <hr />
