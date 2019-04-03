@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class Register extends Component {
   constructor() {
@@ -10,15 +11,15 @@ export default class Register extends Component {
       password2: '',
       errors: {},
     };
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.onChange = this.onChange;
+    this.onSubmit = this.onSubmit;
   }
 
-  onChange(e) {
+  onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  onSubmit(e) {
+  onSubmit = (e) => {
     e.preventDefault();
     const {
       name, email, password, password2,
@@ -31,6 +32,10 @@ export default class Register extends Component {
       password2,
     };
     console.log(newUser);
+    axios
+      .post('/api/users/register', newUser)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err.response.data));
   }
 
 

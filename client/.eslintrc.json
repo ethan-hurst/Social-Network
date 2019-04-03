@@ -20,6 +20,7 @@
         "react"
     ],
     "rules": {
+        "no-undef": "warn",
         "react/no-unused-state": "warn",
         "react/prefer-stateless-function": "off",
         "react/jsx-filename-extension": [1, {
@@ -30,5 +31,6 @@
             "args": "after-used",
             "ignoreRestSiblings": false
         }]
-    }
+    },
+    "parser": "babel-eslint"
 }
