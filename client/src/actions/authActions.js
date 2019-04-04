@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { GET_ERRORS } from './types';
+// eslint-disable-next-line camelcase
+import jwt_decode from 'jwt-decode';
+import setAuthToken from '../utils/setAuthToken';
+
+import { GET_ERRORS, SET_CURRENT_USER } from './types';
 
 export const registerUser = (userData, history) => (dispatch) => {
   axios
@@ -12,4 +16,22 @@ export const registerUser = (userData, history) => (dispatch) => {
     }));
 };
 
-export const foo = 'foo';
+export const loginUser = userData => (dispatch) => {
+  axios
+    .post('/api/users/login', userData)
+    .then((res) => {
+      const { token } = res.data;
+      localStorage.setItem('jwtToken', token);
+      setAuthToken(token);
+      const decoded = jwt_decode(token);
+      dispatch(setCurrentUser(decoded));
+    })
+    .catch((err) => {
+
+    });
+};
+
+export const setCurrentUser = decoded => ({
+  type: SET_CURRENT_USER,
+  payload: decoded,
+});
