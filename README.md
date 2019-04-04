@@ -14,3 +14,10 @@ When the dependancies have installed you're able to run the server locally by ru
 
 ### Running the Application locally
 To use a local dev server, after you've completed the dependancy installation, run this npm command. ```npm run dev```
+You will need a config directory, and generate a file called ```keys.js``` and you'll need to link off to a mongoose database using a connection string. You also need to generate a secret string. The file should look like this.
+
+```module.exports = {
+  url: 'Your Mongoose connection string',
+  secret: 'Your Secret String'
+}```
+
