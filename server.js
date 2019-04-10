@@ -22,8 +22,6 @@ mongoose.connect(keys.url, {
   .then(() => console.log('Database Connected!'))
   .catch(err => console.log(err))
 
-app.get('/', (req, res) => res.send('What are you looking at'))
-
 app.use(passport.initialize())
 require('./config/passport')(passport)
 
@@ -34,7 +32,7 @@ app.use('/api/posts', posts)
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'))
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    res.sendFile(path.resolve(__dirname, 'client', 'build'))
   })
 }
 
