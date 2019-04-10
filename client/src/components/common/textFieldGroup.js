@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
@@ -14,7 +15,6 @@ const textFieldGroup = ({
 
 textFieldGroup.propTypes = {
   name: PropTypes.string.isRequired,
-  // eslint-disable-next-line react/require-default-props
   placeholder: PropTypes.string,
   value: PropTypes.string.isRequired,
   info: PropTypes.string,
@@ -25,6 +25,7 @@ textFieldGroup.propTypes = {
 };
 
 textFieldGroup.defaultProps = {
+  // eslint-disable-next-line react/default-props-match-prop-types
   type: 'text',
 };
 

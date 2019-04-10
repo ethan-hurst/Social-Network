@@ -58,7 +58,7 @@ class Login extends Component {
               <p className="lead text-center">Sign in to your Just Friends&trade; account</p>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup placeholder="Email Address" name="email" type="email" value={this.state.email} onChange={this.onChange} error={errors.email} />
-                <TextFieldGroup placeholder="Email Address" name="password" type="password" value={this.state.email} onChange={this.onChange} error={errors.email} />
+                <TextFieldGroup placeholder="Password" name="password" type="password" value={this.state.password} onChange={this.onChange} error={errors.password} />
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
             </div>

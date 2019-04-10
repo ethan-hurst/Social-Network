@@ -12,11 +12,14 @@ import store from './store';
 
 import { Navbar, Footer, Landing } from './components/layout';
 import { Login, Register } from './components/auth';
+import Dashboard from './components/dashboard/Dashboard';
+import { clearProfile } from './actions/profileActions';
 
 if (localStorage.jwtToken) {
   setAuthToken(localStorage.jwtToken);
   const decoded = jwt_decode(localStorage.jwtToken);
   store.dispatch(setCurrentUser(decoded));
+  store.dispatch(clearProfile(decoded));
   const currentTime = Date.now() / 7200;
   if (decoded.exp < currentTime) {
     store.dispatch(logoutUser());
@@ -35,6 +38,7 @@ class App extends Component {
             <div className="container">
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/dashboard" component={Dashboard} />
             </div>
             <Footer />
           </Router>
