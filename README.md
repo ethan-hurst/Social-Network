@@ -21,3 +21,6 @@ You will need a config directory, and generate a file called ```keys.js``` and y
   secret: 'Your Secret String'
 }```
 
+## Heroku Deployment
+When the time comes to fire up your application. You will need to set the following
+@TODO Complete Deployment Steps
