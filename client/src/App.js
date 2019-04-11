@@ -1,8 +1,6 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import './custom.scss';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 // eslint-disable-next-line camelcase
 import jwt_decode from 'jwt-decode';
@@ -14,6 +12,8 @@ import { Navbar, Footer, Landing } from './components/layout';
 import { Login, Register } from './components/auth';
 import Dashboard from './components/dashboard/Dashboard';
 import { clearProfile } from './actions/profileActions';
+
+import PrivateRoute from './components/common/PrivateRoute';
 
 if (localStorage.jwtToken) {
   setAuthToken(localStorage.jwtToken);
@@ -38,7 +38,9 @@ class App extends Component {
             <div className="container">
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
-              <Route exact path="/dashboard" component={Dashboard} />
+              <Switch>
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              </Switch>
             </div>
             <Footer />
           </Router>
