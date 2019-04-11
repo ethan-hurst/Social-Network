@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-prop-types */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -9,7 +10,6 @@ class CreateProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      displaySocialInputs: false,
       handle: '',
       company: '',
       website: '',
@@ -24,17 +24,66 @@ class CreateProfile extends Component {
       instagram: '',
       errors: {},
     };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onSubmit = (e) => {
+    e.preventDefault();
+    console.log('submit');
+  }
+
+  onChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   render() {
+    const { errors, displaySocialInputs } = this.state;
+    let socialInputs;
+    if (displaySocialInputs) {
+      socialInputs = (
+        <div>
+          <InputGroup placeholder="Twitter Profile URL" name="twitter" icon="fab fa-twitter" value={this.state.twitter} onChange={this.onChange} error={errors.twitter} />
+          <InputGroup placeholder="Facebook Profile URL" name="facebook" icon="fab fa-facebook" value={this.state.facebook} onChange={this.onChange} error={errors.facebook} />
+          <InputGroup placeholder="Instagram Profile URL" name="Instagram" icon="fab fa-instagram" value={this.state.Instagram} onChange={this.onChange} error={errors.Instagram} />
+          <InputGroup placeholder="Youtube Profile URL" name="youtube" icon="fab fa-youtube" value={this.state.youtube} onChange={this.onChange} error={errors.youtube} />
+          <InputGroup placeholder="Linkedin Profile URL" name="linedin" icon="fab fa-linkedin" value={this.state.linedin} onChange={this.onChange} error={errors.linedin} />
+        </div>
+      );
+    }
+    const options = [
+      { label: '* Select Professional Status', value: 0 },
+      { label: 'Full Time', value: 'Full Time' },
+      { label: 'Part Time', value: 'Part Time' },
+      { label: 'Studying', value: 'Studying' },
+      { label: 'Unemployed', value: 'Unemployed' },
+      { label: 'Prefer not to Say', value: 'Prefer not to Say' },
+    ];
     return (
       <div className="create-profile">
         <div className="container">
-          <div className="row">
+          <div className="row" style={{ paddingBottom: '75px' }}>
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Create Your Profile</h1>
               <p className="lead text-center">Let&apos;s get some info to make your profile stand out!</p>
               <small className="d-block pb-3">* = required fields</small>
+              <form onSubmit={this.onSubmit}>
+                <TextFieldGroup placeholder="* Profile Handle" name="Handle" value={this.state.handle} onChange={this.onChange} error={errors.handle} info="A unique name for your profile URL. This can be your full name, nickname, etc" />
+                <SelectListGroup placeholder="* Employment Status" name="Status" value={this.state.status} onChange={this.onChange} error={errors.status} options={options} info="What is your working status" />
+                <TextFieldGroup placeholder="Company" name="Company" value={this.state.company} onChange={this.onChange} error={errors.company} info="Your own company or one you work for" />
+                <TextFieldGroup placeholder="Website" name="Website" value={this.state.website} onChange={this.onChange} error={errors.website} info="Your personal website (if you have one)" />
+                <TextFieldGroup placeholder="* Location" name="Location" value={this.state.location} onChange={this.onChange} error={errors.location} info="Suburb or area where you are" />
+                <TextFieldGroup placeholder="* Skills" name="Skills" value={this.state.skills} onChange={this.onChange} error={errors.skills} info="Please seperate all values by a comma for example 'skill1, skill2'" />
+                <TextFieldGroup placeholder="Github Username" name="githubusername" value={this.state.githubusername} onChange={this.onChange} error={errors.githubusername} info="If you want your latest repos and a Github link, include your username" />
+                <TextAreaFieldGroup placeholder="Short Bio" name="bio" value={this.state.bio} onChange={this.onChange} error={errors.bio} info="Tell us about yourself" />
+                <div className="mb-3">
+                  {/* eslint-disable-next-line react/button-has-type */}
+                  <button onClick={() => { this.setState(previousState => ({ displaySocialInputs: !previousState.displaySocialInputs })); }} className="btn btn-secondary">Add Social Networks</button>
+                  <span className="text-muted"> Optional</span>
+                </div>
+                {socialInputs}
+                <input type="submit" value="Submit" className="btn btn-info btn-block mt-4" />
+              </form>
             </div>
           </div>
         </div>

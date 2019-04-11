@@ -8,7 +8,7 @@ const InputGroup = ({
 }) => (
   <div className="input-group mb-3">
     <div className="input-group-prepend">
-      <span className="input-group-text">
+      <span className="input-group-text" style={{ height: '48px', width: '40px' }}>
         <i className={icon} />
       </span>
     </div>
