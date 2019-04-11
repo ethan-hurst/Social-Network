@@ -5,20 +5,21 @@ import PropTypes from 'prop-types';
 import { TextFieldGroup, TextAreaFieldGroup } from '../common';
 
 class AddExperience extends Component {
-  constructor(props){
-    super(props)
-    this.state ={ 
+  constructor(props) {
+    super(props);
+    this.state = {
       company: '',
-      title:'',
-      location:'',
+      title: '',
+      location: '',
       from: '',
       to: '',
       current: false,
       description: '',
       errors: {},
-      disabled: false
-    }
+      disabled: false,
+    };
   }
+
   render() {
     const { errors } = this.state;
     return (
@@ -42,14 +43,14 @@ class AddExperience extends Component {
   }
 }
 
-AddExperience.propTypes = { 
+AddExperience.propTypes = {
   profile: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
-}
+  errors: PropTypes.object.isRequired,
+};
 
 const mapStateToProps = state => ({
   profile: state.profile,
-  errors: state.erros
-})
+  errors: state.erros,
+});
 
-export default connect(mapStateToProps)(withRouter((AddExperience));
+export default connect(mapStateToProps)(withRouter(AddExperience));
