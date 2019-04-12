@@ -38,5 +38,9 @@ img {
   color: #bbb !important;
 }
 
+.table {
+  table-layout: fixed;
+}
+
 // Import Bootstrap and its default variables
 @import '~bootstrap/scss/bootstrap.scss';
