@@ -92,7 +92,7 @@ class AddEducation extends Component {
                   error={errors.degree}
                 />
                 <TextFieldGroup
-                  placeholder="Field of Study"
+                  placeholder="* Field of Study"
                   name="fieldofstudy"
                   value={this.state.fieldofstudy}
                   onChange={this.onChange}
@@ -126,7 +126,7 @@ class AddEducation extends Component {
                     id="current"
                   />
                   <label htmlFor="current" className="form-check-label">
-                    Current Job
+                    Currently Enroled
                   </label>
                 </div>
                 <TextAreaFieldGroup
