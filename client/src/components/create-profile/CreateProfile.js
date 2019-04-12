@@ -120,7 +120,7 @@ class CreateProfile extends Component {
     return (
       <div className="create-profile">
         <div className="container">
-          <div className="row" style={{ paddingBottom: '75px' }}>
+          <div className="row">
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Create Your Profile</h1>
               <p className="lead text-center">Let&apos;s get some info to make your profile stand out!</p>

@@ -66,7 +66,7 @@ class AddEducation extends Component {
     return (
       <div className="add-education">
         <div className="container">
-          <div className="row" style={{ paddingBottom: '75px' }}>
+          <div className="row">
             <div className="col-md-8 m-auto">
               <Link to="/dashboard" className="btn btn-light">
                 Go Back

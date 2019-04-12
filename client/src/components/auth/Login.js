@@ -52,7 +52,7 @@ class Login extends Component {
     return (
       <div className="login">
         <div className="container">
-          <div className="row" style={{ paddingBottom: '75px' }}>
+          <div className="row">
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Log In</h1>
               <p className="lead text-center">Sign in to your Just Friends&trade; account</p>
