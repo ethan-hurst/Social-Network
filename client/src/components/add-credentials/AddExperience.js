@@ -46,7 +46,6 @@ class AddExperience extends Component {
       current: this.state.current,
       description: this.state.description,
     };
-
     this.props.addExperience(expData, this.props.history);
   }
 

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import {
-  TextFieldGroup, InputGroup, PrivateRoute, SelectListGroup, Spinner, TextAreaFieldGroup,
+  TextFieldGroup, InputGroup, SelectListGroup, TextAreaFieldGroup,
 } from '../common';
 import { createProfile } from '../../actions/profileActions';
 
