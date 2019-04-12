@@ -18,9 +18,9 @@ class ProfileItem extends Component {
             <p>
               {profile.status}
               {' '}
-              {isEmpty(profile.company) ? null : (
+              {isEmpty(profile.status) ? null : (
                 <span>
-at
+                  at
                   {' '}
                   {profile.company}
                 </span>
@@ -28,7 +28,11 @@ at
             </p>
             <p>
               {isEmpty(profile.location) ? null : (
-                <span>{profile.location}</span>
+                <span>
+                  Location:
+                  {' '}
+                  {profile.location}
+                </span>
               )}
             </p>
             <Link to={`/profile/${profile.handle}`} className="btn btn-info">
