@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "clean-dependancies": "rm -rf node_modules && rm -rf package-lock.json && cd client && rm -rf node_modules && rm -rf package-lock.json && cd ..",
-    "dep-install": "npm run clean-dependancies && npm install && cd client && npm install && cd ..",
+    "clean-dependancies": "sudo rm -rf node_modules && rm -rf package-lock.json && cd client && rm -rf node_modules && rm -rf package-lock.json && cd ..",
+    "dep-install": "sudo npm run clean-dependancies && npm install && cd client && npm install && cd ..",
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
