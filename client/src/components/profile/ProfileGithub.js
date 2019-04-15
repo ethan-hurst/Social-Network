@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
 import propTypes from 'prop-types';
 
 class ProfileGithub extends Component {

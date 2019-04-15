@@ -2,7 +2,6 @@
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import React, { Component } from 'react';
-import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
 import TextFieldGroup from '../common/TextFieldGroup';
@@ -52,7 +51,6 @@ class Register extends Component {
     const {
       name, email, password, password2, errors,
     } = this.state;
-    const { user } = this.props.auth;
     return (
       <div className="register">
         <div className="container">
@@ -61,10 +59,10 @@ class Register extends Component {
               <h1 className="display-4 text-center">Sign Up</h1>
               <p className="lead text-center">Create your Just Friends&trade; account</p>
               <form onSubmit={this.onSubmit}>
-                <TextFieldGroup placeholder="Full Name" name="name" value={this.state.name} onChange={this.onChange} error={errors.name} />
-                <TextFieldGroup placeholder="Email Address" name="email" type="email" value={this.state.email} onChange={this.onChange} error={errors.email} info="This site uses Gravatar, so if you want an image, use a gravatar email" />
-                <TextFieldGroup placeholder="Password" name="password" type="password" value={this.state.password} onChange={this.onChange} error={errors.password} />
-                <TextFieldGroup placeholder="Confirm Password" name="password2" type="password" value={this.state.password2} onChange={this.onChange} error={errors.password2} />
+                <TextFieldGroup placeholder="Full Name" name="name" value={name} onChange={this.onChange} error={errors.name} />
+                <TextFieldGroup placeholder="Email Address" name="email" type="email" value={email} onChange={this.onChange} error={errors.email} info="This site uses Gravatar, so if you want an image, use a gravatar email" />
+                <TextFieldGroup placeholder="Password" name="password" type="password" value={password} onChange={this.onChange} error={errors.password} />
+                <TextFieldGroup placeholder="Confirm Password" name="password2" type="password" value={password2} onChange={this.onChange} error={errors.password2} />
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
             </div>
