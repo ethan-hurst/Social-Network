@@ -42,9 +42,10 @@ img {
   table-layout: fixed;
 }
 
-div.row{ 
-  padding-bottom: 75px;
+div.row {
+  // padding-bottom: 75px;
 }
+
 //TODO fix footer issue
 // Import Bootstrap and its default variables
 @import '~bootstrap/scss/bootstrap.scss';
