@@ -42,8 +42,9 @@ img {
   table-layout: fixed;
 }
 
-footer.bg-dark {
-  position: sticky;
+div.row{ 
+  padding-bottom: 75px;
 }
+//TODO fix footer issue
 // Import Bootstrap and its default variables
 @import '~bootstrap/scss/bootstrap.scss';
