@@ -57,7 +57,7 @@ class Register extends Component {
           <div className="row">
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Sign Up</h1>
-              <p className="lead text-center">Create your Just Friends&trade; account</p>
+              <p className="lead text-center">Create your Social Network&trade; account</p>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup placeholder="Full Name" name="name" value={name} onChange={this.onChange} error={errors.name} />
                 <TextFieldGroup placeholder="Email Address" name="email" type="email" value={email} onChange={this.onChange} error={errors.email} info="This site uses Gravatar, so if you want an image, use a gravatar email" />

@@ -8,7 +8,7 @@ export default function Footer() {
         {' '}
         {new Date().getFullYear()}
         {' '}
-        Just Friends&trade;
+        Social Network&trade;
       </footer>
     </div>
   );

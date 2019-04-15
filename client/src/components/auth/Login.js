@@ -54,7 +54,7 @@ class Login extends Component {
           <div className="row">
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Log In</h1>
-              <p className="lead text-center">Sign in to your Just Friends&trade; account</p>
+              <p className="lead text-center">Sign in to your Social Network&trade; account</p>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup placeholder="Email Address" name="email" type="email" value={email} onChange={this.onChange} error={errors.email} />
                 <TextFieldGroup placeholder="Password" name="password" type="password" value={password} onChange={this.onChange} error={errors.password} />
