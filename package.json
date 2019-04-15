@@ -4,14 +4,14 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "clean-dependancies": "sudo rm -rf node_modules && rm -rf package-lock.json && cd client && rm -rf node_modules && rm -rf package-lock.json && cd ..",
-    "dep-install": "sudo npm run clean-dependancies && npm install && cd client && npm install && cd ..",
+    "clean-dependancies": "sudo rm -rf node_modules && rm -rf package-lock.json && rm -rf yarn.lock && cd client && rm -rf node_modules && rm -rf package-lock.json && rm -rf yarn.lock && cd ..",
+    "dep-install": "sudo npm run clean-dependancies && yarn install && cd client && yarn install && cd ..",
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
-    "deploy":  "git push heroku master"
+    "deploy": "git push heroku master"
   },
   "keywords": [],
   "author": "",
@@ -21,7 +21,7 @@
     "body-parser": "^1.18.3",
     "concurrently": "^4.1.0",
     "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-import": "^2.17.1",
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^4.0.0",
@@ -29,15 +29,15 @@
     "gravatar": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
     "memjs": "^1.2.0",
-    "mongoose": "^5.4.20",
-    "nodemon": "^1.18.10",
+    "mongoose": "^5.5.1",
+    "nodemon": "^1.18.11",
     "npm": "^6.9.0",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "validator": "^10.11.0"
   },
   "devDependencies": {
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.11"
   },
   "engines": {
     "node": "8.11.4"

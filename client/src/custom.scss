@@ -42,8 +42,8 @@ img {
   table-layout: fixed;
 }
 
-div.row{ 
-  padding-bottom: 75px;
+footer.bg-dark {
+  position: sticky;
 }
 // Import Bootstrap and its default variables
 @import '~bootstrap/scss/bootstrap.scss';
