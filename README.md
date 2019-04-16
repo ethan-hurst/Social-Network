@@ -1,4 +1,4 @@
-# Just-Friends
+# Social-Network
 
 ## Local Installation
 
