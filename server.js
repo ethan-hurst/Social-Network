@@ -38,25 +38,6 @@ if (process.env.NODE_ENV === 'production') {
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
   })
-  var mc = memjs.Client.create(process.env.MEMCACHIER_SERVERS, {
-    failover: true, // default: false
-    timeout: 1, // default: 0.5 (seconds)
-    keepAlive: true // default: false
-  })
-
-  mc.set('hello', 'memcachier', { expires: 0 }, function (err, val) {
-    if (err != null) {
-      console.log('Error setting value: ' + err)
-    }
-  })
-
-  mc.get('hello', function (err, val) {
-    if (err != null) {
-      console.log('Error getting value: ' + err)
-    } else {
-      console.log(val.toString('utf8'))
-    }
-  })
 }
 
 app.listen(port, () => console.log(`Server running on port ${port}`))
