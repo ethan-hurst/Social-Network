@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "clean-dependancies": "sudo rm -rf node_modules && rm -rf package-lock.json && rm -rf yarn.lock && cd client && rm -rf node_modules && rm -rf package-lock.json && rm -rf yarn.lock && cd ..",
-    "dep-install": "sudo npm run clean-dependancies && yarn install && cd client && yarn install && cd ..",
+    "clean-dependancies": "rm -rf node_modules && rm -rf package-lock.json && rm -rf yarn.lock && cd client && rm -rf node_modules && rm -rf package-lock.json && rm -rf yarn.lock && cd ..",
+    "dep-install": "npm run clean-dependancies && yarn install && cd client && yarn install && cd ..",
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
