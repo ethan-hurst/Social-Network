@@ -1,5 +1,7 @@
 # Social-Network
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/flamebeard/Social-Network.svg)](https://greenkeeper.io/)
+
 ## Local Installation
 
 #### Backend Installation
