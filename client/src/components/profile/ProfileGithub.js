@@ -50,7 +50,7 @@ class ProfileGithub extends Component {
       </div>
     ));
     return (
-      <div>
+      <div style="padding-bottom: 50px; margin-bottom: 50px;">
         <hr />
         <h3 className="mb-4">
           Latest Github Repositories
