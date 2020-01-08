@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "clean-dep": "rm -rf node_modules && rm -rf package-lock.json && rm -rf yarn.lock && cd client && rm -rf node_modules && rm -rf package-lock.json && rm -rf yarn.lock && cd ..",
-    "dep-install": "npm run clean-dependancies && yarn install && cd client && yarn install && cd ..",
+    "dep-install": "npm run clean-dep && yarn install && cd client && yarn install && cd ..",
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
@@ -18,23 +18,23 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.3",
-    "concurrently": "^4.1.0",
+    "body-parser": "^1.19.0",
+    "concurrently": "^5.0.2",
     "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-import": "^2.17.1",
-    "eslint-plugin-node": "^10.0.0",
-    "eslint-plugin-promise": "^4.1.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "express": "^4.16.4",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "express": "^4.17.1",
     "gravatar": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
-    "memjs": "^1.2.0",
+    "memjs": "^1.2.2",
     "mongoose": "^5.5.1",
-    "nodemon": "^1.18.11",
+    "nodemon": "^2.0.2",
     "npm": "^6.13.4",
-    "passport": "^0.4.0",
+    "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
-    "validator": "^11.1.0"
+    "validator": "^12.1.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.11"
